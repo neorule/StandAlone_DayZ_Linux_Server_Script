@@ -4,10 +4,20 @@
 ### Original script by thelastnoc
 ### Customised and extended by haywardgg
 #############################################
-
 ### NO NEED TO EDIT ANYTHING IN THIS FILE ###
 ### Changes should be made in .config.ini ###
-
+#############################################
+### Modded By svnt
+### ADD cpuCount variable
+### Renamed .config.ini --> config.cfg
+### Renamed .workshop.cfg --> workshop.cfg
+### Renamed  mod_timestamps.json -->  .mod_timestamps.json
+### Longer graceful suhtdown 60 --> 120 sec
+#############################################
+### Modded By neorule
+### Change when workshop.cfg file creates now i creates in the begining of the script
+#############################################
+workshop_cfg="${HOME}/workshop.cfg"
 if [ "${ansi}" != "off" ]; then
         # echo colors
         default="\e[0m"
@@ -24,7 +34,7 @@ if [ "${ansi}" != "off" ]; then
 fi
 
 # Define the config file path
-CONFIG_FILE=".config.ini"
+CONFIG_FILE="config.cfg"
 
 # Default content of the config.ini file
 DEFAULT_CONFIG="
@@ -36,6 +46,7 @@ dayz_id=221100
 
 # Game Port (Not Steam QueryPort. Add/Change that in your serverDZ.cfg file)
 port=2301
+cpuCount=4
 
 # IMPORTANT PARAMETERS
 steamlogin=CHANGEME
@@ -73,7 +84,11 @@ else
     printf "[ ${green}Finished${default} ] Configuration file loaded.\n"
     chmod 600 "$CONFIG_FILE"
 fi
-
+# If workshop.cfg doesn't exist, create it.
+if [ ! -f "$workshop_cfg" ]; then
+    touch $workshop_cfg
+	chmod 600 ${HOME}/workshop.cfg
+fi
 # Check if steamlogin is set to CHANGEME
 if [ "$steamlogin" = "CHANGEME" ]; then
 	printf "[ ${red}Error${default} ] Please update ${CONFIG_FILE} before running this script again.\n"
@@ -160,7 +175,7 @@ fn_start_dayz(){
 		sleep 0.5
 		sleep 0.5
 		cd ${HOME}/serverfiles
-		tmux new-session -d -x 23 -y 80 -s $(whoami)-tmux ./DayZServer $dayzparameter -mod="$workshop" -servermod="$servermods"
+		tmux new-session -d -x 23 -y 80 -s $(whoami)-tmux ./DayZServer $dayzparameter -mod="$workshop" -cpuCount="$cpuCount" -servermod="$servermods"
 		sleep 1
 		cd ${HOME}
 		date > ${HOME}/.dayzlockfile
@@ -172,7 +187,7 @@ fn_stop_dayz(){
 	if [ "${dayzstatus}" == "1" ]; then
 		printf "[ ${magenta}...${default} ] Stopping Server graceful."
 		# waits up to 60 seconds giving the server time to shutdown gracefuly
-		for seconds in {1..60}; do
+		for seconds in {1..120}; do
 			fn_status_dayz
 			if [ "${dayzstatus}" == "0" ]; then
 				printf "\r[ ${green}OK${default} ] Stopping Server graceful.\n"
@@ -335,13 +350,13 @@ fn_workshop_mods(){
     declare -a workshopID
     workshopfolder="${HOME}/serverfiles/steamapps/workshop/content/221100"
     workshoplist=""
-    timestamp_file="${HOME}/mod_timestamps.json"
-    workshop_cfg="${HOME}/.workshop.cfg"
+    timestamp_file="${HOME}/.mod_timestamps.json"
+    # workshop_cfg="${HOME}/workshop.cfg"
     
-    # If .workshop.cfg doesn't exist, create it.
+    # If workshop.cfg doesn't exist, create it.
     if [ ! -f "$workshop_cfg" ]; then
         touch $workshop_cfg
-	chmod 600 ${HOME}/.workshop.cfg
+	chmod 600 ${HOME}/workshop.cfg
     fi
 
     # Read the updated workshop.cfg into workshopID array
