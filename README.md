@@ -2,10 +2,9 @@
 ### An alternative to the Linux version of Omega Manager
 Custom script for managing your DayZ Server on Linux <br/>
 Currently being used without issue on `UNIT487` DayZ Server.<br/><br/>
-**Questions?** Join my [Discord](https://pcgamers.win/discord)<br/>
 
 ### WARNING
-Use this [script](https://github.com/haywardgg/DayZ_Server_Manager/blob/main/dayzserver.sh) at your own risk.<br/>
+Use this [script](https://github.com/neorule/StandAlone_DayZ_Linux_Server_Script/blob/main/dayzserver.sh) at your own risk.<br/>
 You are free to copy or fork the script and edit to your liking.<br/>
 All I ask is that you don't remove the credits at the top of the main script. Thank you.
 
@@ -17,7 +16,7 @@ All I ask is that you don't remove the credits at the top of the main script. Th
 - Simple to set up.
 
 ## First RUN
-1. Download [dayzserver.sh](https://raw.githubusercontent.com/haywardgg/DayZ_Server_Manager/5536718fb3361cf4f3baad9293f61918636e16c7/dayzserver.sh) to the root of your DayZ server home drive.
+1. Download [dayzserver.sh](https://github.com/neorule/StandAlone_DayZ_Linux_Server_Script/blob/main/dayzserver.sh) to the root of your DayZ server home drive.
 2. Then: `chmod +x dayzserver.sh`
 3. Run the script: `./dayzserver.sh`
 4. Wait until it has finished, then follow the instructions.
