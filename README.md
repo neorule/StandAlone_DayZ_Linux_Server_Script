@@ -1,7 +1,7 @@
 ## DayZ Server Manager for Linux
 ### An alternative to the Linux version of Omega Manager
 Custom script for managing your DayZ Server on Linux <br/>
-Currently being used without issue on `UNIT487` DayZ Server.<br/><br/>
+<br/>
 
 ### WARNING
 Use this [script](https://github.com/neorule/StandAlone_DayZ_Linux_Server_Script/blob/main/dayzserver.sh) at your own risk.<br/>
@@ -36,12 +36,12 @@ All I ask is that you don't remove the credits at the top of the main script. Th
    - Make sure there is a **steamQueryPort** setting. i.e `steamQueryPort = 27016;`
 10. Run the script again and your server will be online within minutes.
 
-## .workshop.cfg 
-**Editing the `.workshop.cfg` file is real easy.**<br/>
+## workshop.cfg 
+**Editing the `workshop.cfg` file is real easy.**<br/>
 - Add one workshop ID per line.<br/>
 - The script will automatically check and append mod names each time you run: `./dayzserver.sh workshop`<br/>
 - Optional Mod update notifications can be sent to your Discord channel. <br/>
-   - Just add your Discord URL in `.config.ini`
+   - Just add your Discord URL in `config.ini`
    - Mod names and timestamps are stored in `mod_timestamps.json` (don't touch this file).
 - You still need to manually add the **@modname;@modnametwo** to the `workshop=""` setting in **.config.ini**
    - I've made this a manual process because certain mods need to be loaded in a specific order.
