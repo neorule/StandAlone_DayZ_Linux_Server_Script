@@ -17,7 +17,7 @@
 ### Modded By neorule
 ### Change when workshop.cfg file creates now i creates in the begining of the script
 #############################################
-workshop_cfg="${HOME}/workshop.cfg"
+
 if [ "${ansi}" != "off" ]; then
         # echo colors
         default="\e[0m"
@@ -35,6 +35,8 @@ fi
 
 # Define the config file path
 CONFIG_FILE="config.cfg"
+# Define the workshop file path
+workshop_cfg="${HOME}/workshop.cfg"
 
 # Default content of the config.ini file
 DEFAULT_CONFIG="
@@ -69,6 +71,10 @@ discord_webhook_url=\"\"
 # modify carefully! server won't start if syntax is corrupt!
 dayzparameter=\" -config=\${config} -port=\${port} -freezecheck \${BEpath} \${profiles} \${logs}\""
 
+# Default content of the workshop.cfg file
+DEFAULT_WORKSHOP="#Replace this line with the mod number one number on each line. Note always leave two empty lines below!
+"
+
 # Check if the config.ini file exists
 if [ ! -f "$CONFIG_FILE" ]; then
     printf "[ ${yellow}Warning${default} ] ${CONFIG_FILE} file not found.\n"
@@ -86,8 +92,9 @@ else
 fi
 # If workshop.cfg doesn't exist, create it.
 if [ ! -f "$workshop_cfg" ]; then
-    touch $workshop_cfg
-	chmod 600 ${HOME}/workshop.cfg
+	echo -e "$DEFAULT_WORKSHOP" > "$workshop_cfg"
+    #touch $workshop_cfg
+	chmod 600 "$workshop_cfg"
 fi
 # Check if steamlogin is set to CHANGEME
 if [ "$steamlogin" = "CHANGEME" ]; then
@@ -354,10 +361,15 @@ fn_workshop_mods(){
     # workshop_cfg="${HOME}/workshop.cfg"
     
     # If workshop.cfg doesn't exist, create it.
-    if [ ! -f "$workshop_cfg" ]; then
-        touch $workshop_cfg
-	chmod 600 ${HOME}/workshop.cfg
-    fi
+	if [ ! -f "$workshop_cfg" ]; then
+	echo -e "$DEFAULT_WORKSHOP" > "$workshop_cfg"
+    #touch $workshop_cfg
+	chmod 600 "$workshop_cfg"
+	fi
+    #if [ ! -f "$workshop_cfg" ]; then
+    #   touch $workshop_cfg
+	#chmod 600 ${HOME}/workshop.cfg
+    #fi
 
     # Read the updated workshop.cfg into workshopID array
     mapfile -t workshopID < "$workshop_cfg"
