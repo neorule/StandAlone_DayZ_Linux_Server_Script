@@ -1,7 +1,7 @@
 ## DayZ Server Manager for Linux
 ## 
 ## This text and installation instructions will be updated shortly.
-##
+## The script has been tested on Debian 12.9
 ### An alternative to the Linux version of Omega Manager
 Custom script for managing your DayZ Server on Linux <br/>
 <br/>
