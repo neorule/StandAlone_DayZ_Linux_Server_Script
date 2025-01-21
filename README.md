@@ -18,11 +18,13 @@ All I ask is that you don't remove the credits at the top of the main script. Th
 - Auto Start, Stop and Restarts are done with the help of Crontab.
 - Simple to set up.
 
+### For windows user
+Install samba and it is easier to change, copy and paste files from the explorer
+
 ## First RUN
-1. Download [dayzserver.sh](https://github.com/neorule/StandAlone_DayZ_Linux_Server_Script/blob/main/dayzserver.sh) to the root of your DayZ server home drive.
-2. Then: `chmod +x dayzserver.sh`
-3. Run the script: `./dayzserver.sh`
-4. Wait until it has finished, then follow the instructions.
+1. Download [dayzserver.sh](https://github.com/neorule/StandAlone_DayZ_Linux_Server_Script/blob/main/dayzserver.sh) to the root of your DayZ server home drive. 
+2. Run the script: `./dayzserver.sh`
+3. Wait until it has finished, then follow the instructions.
 5. Edit the **config.ini** file with your preferences.
    - Main things to change here are **steamlogin** and **port** for now.
    - This is also where you add your @modNames to the launch paramaters. 
