@@ -55,10 +55,11 @@ Install samba and it is easier to change, copy and paste files from the explorer
 
 ## Auto Restarts and Updates
 The following cron jobs can be added to your DayZ Server users contab:<br/>
+Don't forget to enter your username in the path where it says CHANGEME
 ```
-@reboot /home/dayz/dayzserver.sh start > /dev/null 2>&1
-*/1 * * * * /home/dayz/dayzserver.sh monitor > /dev/null 2>&1
-# */30 * * * * /home/dayz/dayzserver backup > /dev/null 2>&1
+@reboot /home/CHANGEME/dayzserver.sh start > /dev/null 2>&1
+*/1 * * * * /home/CHANGEME/dayzserver.sh monitor > /dev/null 2>&1
+# */30 * * * * /home/CHANGEME/dayzserver backup > /dev/null 2>&1
 ```
 - Line 1 simply starts the server when the Linux machine is rebooted or turned on.
 - Line 2 checks to see if the server is crashed or has been shutdown remotely, then restarts it.
