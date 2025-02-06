@@ -55,6 +55,10 @@ Install samba and it is easier to change, copy and paste files from the explorer
 
 ## Auto Restarts and Updates
 The following cron jobs can be added to your DayZ Server users contab:<br/>
+```
+crontab -e
+```
+
 Don't forget to enter your username in the path where it says CHANGEME
 ```
 @reboot /home/CHANGEME/dayzserver.sh start > /dev/null 2>&1
